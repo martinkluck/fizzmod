@@ -20,11 +20,11 @@ mapCustomizado(numeros,numero=>{}) //[undefined,undefined,undefined,undefined]
 /**
  * 4) Modificar el prototipo de la funcion constructora Array para que admita como nuevo método la funcion customizada del paso anterior para que cumpla los siguientes tests :
  */
-numeros.mapCustomizado(numero=>numero+1) //[2,3,4,5]
-numeros.mapCustomizado((numero,indice)=>numero+indice) //[1,3,5,7]
-numeros.mapCustomizado(numero=>{}) //[undefined,undefined,undefined,undefined]
-numeros.hasOwnProperty("mapCustomizado") //false
-"mapCustomizado" in numeros //true
+// numeros.mapCustomizado(numero=>numero+1) //[2,3,4,5]
+// numeros.mapCustomizado((numero,indice)=>numero+indice) //[1,3,5,7]
+// numeros.mapCustomizado(numero=>{}) //[undefined,undefined,undefined,undefined]
+// numeros.hasOwnProperty("mapCustomizado") //false
+// "mapCustomizado" in numeros //true
 
 /**
  * 5) Los miembros de trabajo especificados en el siguiente objeto usan su nombre como indice y su edad como valor. Separa los miembros mayores de 40 años y menores de 25 años en un array y todo el resto en un segundo array. Ambos arrays tienen que estar compuestos únicamente por los nombres de las personas. Por último cada array tiene que estar ordenado alfabeticamente.
@@ -53,19 +53,26 @@ console.log(array1, array2);
  * 6) Encontrar todos los errores en el siguiente programa , corregirlo y elevarlo como Push Request al repositorio de origen :
 */
 
-(function(){
+(function () {
     "use strict"
 
-    let x = 1 , arr = []
-    y = 2
-    arr.push(x,y)
-    let res = arr.forEach(n=>{
+    let x = 1,
+        arr = [],
+        y = 2
+    arr.push(x, y)
+    let res = arr.forEach((n, indice) => {
         console.log(`El numero en el indice ${indice} es : ${n}`);
-        res + 1
+        arr[indice] = n + 1
     })
-    console.log(res) // [2,3]
+    console.log(arr) // [2,3]
 })()
 
 /**
  * 7) Crear un modulo .js que contenga una variable llamada base cuyo valor es el número 2 y tres funciones, las cual va a exportar cada vez que se requiera el archivo llamadas multiplicar , cambiarBase y consultarBase. La función multiplicar toma un valor como input de tipo Number o String y lo multiplica por el valor de la variable base. La función cambiarBase modifica el valor de la variable base el cual se mantiene para las próximas ejecuciones y consultarBase retorna el valor actual de la variable base
  */
+
+ const modulo = require('./modulo');
+
+ console.log(modulo.multiplicar(2));
+ modulo.cambiarBase(7);
+ console.log(modulo.consultarBase());
