@@ -6,6 +6,13 @@
 
 let numeros = [1,2,3,4]
 //mapCustomizado => representa la funcion que ustedes tendrían que crear
+let mapCustomizado = function(array, condition) {
+    let newArray = [];
+    for (var i = 0; i < array.length; i++) {
+        newArray[i] = condition(array[i], i);
+    }
+    return newArray;
+}
 mapCustomizado(numeros,numero=>numero+1) //[2,3,4,5]
 mapCustomizado(numeros,(numero,indice)=>numero+indice) //[1,3,5,7]
 mapCustomizado(numeros,numero=>{}) //[undefined,undefined,undefined,undefined]
@@ -24,6 +31,21 @@ numeros.hasOwnProperty("mapCustomizado") //false
  */
 
 let miembros = { pedro : 35 , ana : 18 , carlos : 43 , juan : 21 , maria : 29 , angela : 31 , jose : 23 , mariana : 41 , eugenio : 19 }
+
+let array1 = [];
+let array2 = [];
+
+for (const prop in miembros) {
+    if (miembros[prop] > 40 || miembros[prop] < 25) {
+        array1.push(prop);
+        array1.sort();
+    } else {
+        array2.push(prop);
+        array2.sort();
+    }
+}
+
+console.log(array1, array2);
 
 /**
  * 4) Crear un fork de este repositorio en sus propias cuentas
