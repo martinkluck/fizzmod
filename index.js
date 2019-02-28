@@ -20,11 +20,18 @@ mapCustomizado(numeros,numero=>{}) //[undefined,undefined,undefined,undefined]
 /**
  * 4) Modificar el prototipo de la funcion constructora Array para que admita como nuevo método la funcion customizada del paso anterior para que cumpla los siguientes tests :
  */
-// numeros.mapCustomizado(numero=>numero+1) //[2,3,4,5]
-// numeros.mapCustomizado((numero,indice)=>numero+indice) //[1,3,5,7]
-// numeros.mapCustomizado(numero=>{}) //[undefined,undefined,undefined,undefined]
-// numeros.hasOwnProperty("mapCustomizado") //false
-// "mapCustomizado" in numeros //true
+Array.prototype.mapCustomizado = function (condition) {
+    let newArray = [];
+    for (var i = 0; i < this.length; i++) {
+        newArray[i] = condition(this[i], i);
+    }
+    return newArray;
+}
+numeros.mapCustomizado(numero=>numero+1) //[2,3,4,5]
+numeros.mapCustomizado((numero,indice)=>numero+indice) //[1,3,5,7]
+numeros.mapCustomizado(numero=>{}) //[undefined,undefined,undefined,undefined]
+numeros.hasOwnProperty("mapCustomizado") //false
+"mapCustomizado" in numeros //true
 
 /**
  * 5) Los miembros de trabajo especificados en el siguiente objeto usan su nombre como indice y su edad como valor. Separa los miembros mayores de 40 años y menores de 25 años en un array y todo el resto en un segundo array. Ambos arrays tienen que estar compuestos únicamente por los nombres de las personas. Por último cada array tiene que estar ordenado alfabeticamente.
